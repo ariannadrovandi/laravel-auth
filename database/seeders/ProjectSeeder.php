@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Project;
+use Illuminate\Support\Str;
 
 class ProjectSeeder extends Seeder
 {
@@ -14,6 +16,14 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $projects = config('boolpress.projects');
+        foreach ($projects as $project) {
+            $newPost = new Project();
+            $newPost->title = $project['title'];
+            $newPost->slug = Str::slug($project['title'], '-');
+            $newPost->image = $project['image'];
+            $newPost->body = $project['body'];
+            $newPost->save();
+        }
     }
 }
