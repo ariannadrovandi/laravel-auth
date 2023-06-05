@@ -16,7 +16,7 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        $projects = config('boolpress.projects');
+        $projects = config('db.projects');
         foreach ($projects as $project) {
             $newPost = new Project();
             $newPost->title = $project['title'];
