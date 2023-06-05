@@ -12,11 +12,13 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
-        return view('admin.projects.index');
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
+
     }
 
     /**
@@ -44,22 +46,22 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     *
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     *
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -78,10 +80,11 @@ class ProjectController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     *
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('message', "$project->title deleted successfully.");
     }
 }
