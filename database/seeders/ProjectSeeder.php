@@ -16,7 +16,7 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        $projects = config('db.projects');
+        $projects = config('projects.projects');
         foreach ($projects as $project) {
             $newPost = new Project();
             $newPost->title = $project['title'];

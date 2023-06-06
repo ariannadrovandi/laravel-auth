@@ -26,9 +26,9 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('project'));
     }
 
     /**
@@ -85,6 +85,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index')->with('message', "$project->title deleted successfully.");
+        return redirect()->route('admin.projects.index')->with('message', "Eliminato con successo.");
     }
 }
