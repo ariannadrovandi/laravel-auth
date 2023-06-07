@@ -2,7 +2,7 @@
 return [
     [
         'title' => 'laravel-auth',
-        'description' => "Un sito Web che ti consente di effettuare il login per aprere la dashboard di amministrazione utilizzando Laravel",
+        'description' => "Un sito Web che ti consente di effettuare il login per aprire la dashboard di amministrazione utilizzando Laravel",
         'image' => 'https://res.cloudinary.com/sujipthapa/image/fetch/q_auto,f_auto/https://sujipthapa.co/media/45/1514804841.login.png'
     ],
     [
