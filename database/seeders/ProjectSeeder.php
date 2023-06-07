@@ -16,13 +16,13 @@ class ProjectSeeder extends Seeder
      */
     public function run()
     {
-        $projects = config('projects.projects');
+        $projects = config('projects');
         foreach ($projects as $project) {
             $newPost = new Project();
             $newPost->title = $project['title'];
             $newPost->slug = Str::slug($project['title'], '-');
             $newPost->image = $project['image'];
-            $newPost->body = $project['body'];
+            $newPost->description = $project['description'];
             $newPost->save();
         }
     }

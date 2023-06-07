@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -24,7 +25,7 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create(Project $project)
     {
@@ -35,11 +36,15 @@ class ProjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreProjectRequest  $request
-     * @return \Illuminate\Http\Response
+     *
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+        $slug = Str::slug($data['title'], '-');
+        $data['slug'] = $slug;
+        $project = Project::create($data);
+        return redirect()->route('admin.projects.show', $project->slug);
     }
 
     /**
@@ -61,7 +66,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.posts.edit', compact('project'));
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -69,12 +74,18 @@ class ProjectController extends Controller
      *
      * @param  \App\Http\Requests\UpdateProjectRequest  $request
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     *
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated();
+        $slug = Str::slug($request->title, '-');
+        $data['slug'] = $slug;
+        $project->update($data);
+        return redirect()->route('admin.projects.show', $project->slug)->with('message', 'Il post modificato con successo.');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

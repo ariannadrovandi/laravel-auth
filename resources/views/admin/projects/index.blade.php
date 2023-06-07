@@ -1,12 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Index Project</h1>
-    <div class="text-end">
+    <h1 class="m-3 ">Lista dei progetti</h1>
+    <div class="text-end mx-5 mb-2">
         <a class="btn btn-success" href="{{ route('admin.projects.create') }}">Crea nuovo post</a>
     </div>
+
     @if (session()->has('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-success my-2">
             {{ session()->get('message') }}
         </div>
     @endif
@@ -25,21 +26,20 @@
                 <tr>
                     <th scope="row">{{ $project->id }}</th>
                     <td>{{ $project->title }}</td>
-                    <td><img class="img-thumbnail" style="width:100px" src="{{ $project->image }}" alt="{{ $project->title }}">
-                    </td>
+                    <td><img class="img-thumbnail" style="width:100px" src="{{ $project->image }}" alt="{{ $project->title }}"></td>
                     <td>{{ $project->created_at }}</td>
-                    <td><a href="{{ route('admin.projects.show', $project->slug) }}"><i class="fa-solid fa-eye"></i></a>
-                        <a href="{{ route('admin.projects.edit', $project->slug) }}"><i class="fa-solid fa-pencil"></i></a>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary m-1">
+                            <a href="{{ route('admin.projects.show', $project->slug) }}"><i class="fa-solid fa-eye"></i></a>
+                        </button>
                         <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type='submit' class="delete-button" data-item-title="{{ $project->title }}"> <i
-                                    class="fa-solid fa-trash"></i></button>
+                            <button type='submit' class="delete-button btn btn-outline-danger m-1" data-item-title="{{ $project->title }}"> <i class="fa-solid fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
 @endsection
