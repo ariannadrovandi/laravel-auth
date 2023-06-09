@@ -6,26 +6,26 @@ import.meta.glob([
 ])
 
 // delete modal
-const deleteSubmitButtons = document.querySelectorAll('.delete-button');
+// const deleteSubmitButtons = document.querySelectorAll('.delete-button');
 
-deleteSubmitButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-        event.preventDefault();
+// deleteSubmitButtons.forEach((button) => {
+//     button.addEventListener('click', (event) => {
+//         event.preventDefault();
 
-        const dataTitle = button.getAttribute('data-item-title');
+//         const dataTitle = button.getAttribute('data-item-title');
 
-        const modal = document.getElementById('deleteModal');
+//         const modal = document.getElementById('deleteModal');
 
-        const bootstrapModal = new bootstrap.Modal(modal);
-        bootstrapModal.show();
+//         const bootstrapModal = new bootstrap.Modal(modal);
+//         bootstrapModal.show();
 
-        const modalItemTitle = modal.querySelector('#modal-item-title');
-        modalItemTitle.textContent = dataTitle;
+//         const modalItemTitle = modal.querySelector('#modal-item-title');
+//         modalItemTitle.textContent = dataTitle;
 
-        const buttonDelete = modal.querySelector('button.btn-primary');
+//         const buttonDelete = modal.querySelector('button.btn-primary');
 
-        buttonDelete.addEventListener('click', () => {
-            button.parentElement.submit();
-        });
-    });
-});
+//         buttonDelete.addEventListener('click', () => {
+//             button.parentElement.submit();
+//         });
+//     });
+// });
